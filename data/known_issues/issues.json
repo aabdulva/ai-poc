@@ -1,0 +1,22 @@
+[
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-001",
+    "title": "Camera timeout after wakeup",
+    "description": "Camera service timeout can occur immediately after vehicle wakeup.",
+    "root_cause": "Camera initialization race condition.",
+    "solution": "Upgrade Camera Stack to 4.2.3 or later.",
+    "software_version": "4.2.x",
+    "component": "CameraService"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-002",
+    "title": "CAN communication unavailable after restart",
+    "description": "CAN communication may be unavailable after ECU restart.",
+    "root_cause": "Gateway startup sequence problem.",
+    "solution": "Upgrade gateway software to the corrected release.",
+    "software_version": "7.x",
+    "component": "CAN Gateway"
+  }
+]

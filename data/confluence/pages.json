@@ -1,0 +1,18 @@
+[
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-001",
+    "title": "CameraService Wakeup Troubleshooting",
+    "content": "CameraService may fail to initialize during vehicle wakeup. Check CAN communication and camera initialization timing. Known solution is to use the updated initialization sequence introduced in Camera Stack 4.2.3.",
+    "component": "CameraService",
+    "software_version": "4.2.3"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-002",
+    "title": "CAN Gateway Startup Problems",
+    "content": "CAN gateway communication problems after ECU restart can be caused by incorrect startup ordering. Updated gateway software contains the corrected initialization sequence.",
+    "component": "CAN Gateway",
+    "software_version": "7.1.2"
+  }
+]

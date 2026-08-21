@@ -1,0 +1,54 @@
+[
+    {
+        "id": "TEST-001",
+        "name": "Camera wakeup - different wording",
+        "expected_ids": ["CAM-1001"],
+        "test_log": "The camera failed to start correctly when the vehicle woke up."
+    },
+    {
+        "id": "TEST-002",
+        "name": "Camera ignition cycle",
+        "expected_ids": ["CAM-1002"],
+        "test_log": "CameraService became unavailable following an ignition cycle."
+    },
+    {
+        "id": "TEST-003",
+        "name": "CAN Gateway restart",
+        "expected_ids": ["KI-002"],
+        "test_log": "CAN communication was unavailable after the vehicle ECU restarted."
+    },
+    {
+        "id": "TEST-004",
+        "name": "Camera timeout during wakeup",
+        "expected_ids": ["CAM-1001"],
+        "test_log": "Camera service experienced a timeout during vehicle wakeup."
+    },
+    {
+        "id": "TEST-005",
+        "name": "Camera troubleshooting",
+        "expected_ids": [
+            "CONF-001",
+            "CAM-1001",
+            "KI-001"
+        ],
+        "test_log": "CameraService wakeup behavior needs investigation and troubleshooting."
+    },
+    {
+        "id": "TEST-006",
+        "name": "Unknown brake failure",
+        "expected_ids": [],
+        "test_log": "Brake pressure sensor reports an unexpected failure during braking."
+    },
+    {
+        "id": "TEST-007",
+        "name": "Unknown battery failure",
+        "expected_ids": [],
+        "test_log": "The vehicle battery management system reports an abnormal charging condition."
+    },
+    {
+        "id": "TEST-008",
+        "name": "Camera initialization failure",
+        "expected_ids": ["CAM-1001"],
+        "test_log": "Camera initialization fails during startup after vehicle wakeup."
+    }
+]

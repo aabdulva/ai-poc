@@ -1,0 +1,32 @@
+[
+  {
+    "source": "JIRA",
+    "id": "CAM-1001",
+    "title": "Camera service timeout during vehicle wakeup",
+    "description": "CameraService sometimes fails to initialize after vehicle wakeup. CAN communication may be lost during startup.",
+    "root_cause": "Race condition during camera initialization.",
+    "solution": "Updated CameraService initialization sequence in software version 4.2.3.",
+    "software_version": "4.2.1",
+    "component": "CameraService"
+  },
+  {
+    "source": "JIRA",
+    "id": "CAM-1002",
+    "title": "Camera unavailable after ignition cycle",
+    "description": "Camera becomes unavailable after an ignition cycle. Camera service reports a timeout.",
+    "root_cause": "Incorrect initialization timeout configuration.",
+    "solution": "Increased initialization timeout and released software version 4.3.0.",
+    "software_version": "4.2.8",
+    "component": "CameraService"
+  },
+  {
+    "source": "JIRA",
+    "id": "CAN-2001",
+    "title": "CAN communication lost after ECU restart",
+    "description": "CAN communication is lost after an ECU restart. Gateway stops receiving messages.",
+    "root_cause": "CAN gateway initialization failure.",
+    "solution": "Updated gateway software and corrected startup sequence.",
+    "software_version": "7.1.2",
+    "component": "CAN Gateway"
+  }
+]
