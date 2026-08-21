@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        AI Test Failure Analysis
+    </title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 30px auto;
+        }
+
+        h1 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow:
+                0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 220px;
+            font-family: monospace;
+            font-size: 14px;
+            padding: 12px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .record {
+            border-left: 4px solid #444;
+            padding: 12px;
+            margin-bottom: 12px;
+            background: #f8f8f8;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .error {
+            background: #ffe5e5;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>
+        AI Test Failure Analysis Agent
+    </h1>
+
+    <div class="subtitle">
+        Search historical engineering knowledge
+        using AI-assisted semantic and hybrid retrieval.
+    </div>
+
+
+    {% if error %}
+
+    <div class="error">
+        {{ error }}
+    </div>
+
+    {% endif %}
+
+
+    <div class="card">
+
+        <h2>
+            Analyze Test Failure
+        </h2>
+
+        <form
+            action="/analyze"
+            method="post"
+            enctype="multipart/form-data"
+        >
+
+            <label>
+                Paste test log or failure phrase
+            </label>
+
+            <br><br>
+
+            <textarea
+                name="log_text"
+                placeholder="Paste test log here..."
+            >{{ test_log or "" }}</textarea>
+
+            <br>
+
+            <label>
+                Or upload a log file
+            </label>
+
+            <br>
+
+            <input
+                type="file"
+                name="log_file"
+            >
+
+            <br>
+
+            <button type="submit">
+                Analyze Failure
+            </button>
+
+        </form>
+
+    </div>
+
+
+    {% if analysis %}
+
+    <div class="card">
+
+        <h2>
+            Failure Analysis
+        </h2>
+
+        <p>
+            <span class="label">
+                Component:
+            </span>
+
+            {{ analysis.component }}
+        </p>
+
+        <p>
+            <span class="label">
+                Error Codes:
+            </span>
+
+            {{ analysis.error_codes }}
+        </p>
+
+        <p>
+            <span class="label">
+                Symptoms:
+            </span>
+
+            {{ analysis.symptoms }}
+        </p>
+
+        <p>
+            <span class="label">
+                Operating Condition:
+            </span>
+
+            {{ analysis.operating_condition }}
+        </p>
+
+        <p>
+            <span class="label">
+                Software Version:
+            </span>
+
+            {{ analysis.software_version }}
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Search Query
+        </h2>
+
+        <pre>{{ search_query }}</pre>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Historical Matches
+        </h2>
+
+        {% for record in historical_records %}
+
+        <div class="record">
+
+            <p>
+                <span class="label">
+                    Rank:
+                </span>
+
+                {{ loop.index }}
+            </p>
+
+            <p>
+                <span class="label">
+                    ID:
+                </span>
+
+                {{ record.id }}
+            </p>
+
+            <p>
+                <span class="label">
+                    Source:
+                </span>
+
+                {{ record.source }}
+            </p>
+
+            <p>
+                <span class="label">
+                    Title:
+                </span>
+
+                {{ record.title }}
+            </p>
+
+            <p>
+                <span class="label">
+                    Affected Software:
+                </span>
+
+                {{ record.affected_software_version }}
+            </p>
+
+            <p>
+                <span class="label">
+                    Fix Software:
+                </span>
+
+                {{ record.fix_software_version }}
+            </p>
+
+            <p>
+                <span class="label">
+                    Final Score:
+                </span>
+
+                {{ "%.3f"|format(record.final_score) }}
+
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>
+            Final Engineering Analysis
+        </h2>
+
+        <pre>{{ final_analysis }}</pre>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
