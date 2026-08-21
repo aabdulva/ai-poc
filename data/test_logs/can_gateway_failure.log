@@ -1,0 +1,9 @@
+ECU: CAN
+Component: CAN Gateway
+State: RESTART
+
+ERROR CAN_2001
+
+CAN communication was lost after ECU restart.
+Gateway stopped receiving messages.
+Startup sequence failed.

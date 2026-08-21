@@ -1,0 +1,6 @@
+ECU: CAM
+Component: CameraService
+State: IGNITION_CYCLE
+
+Camera became unavailable after ignition cycle.
+Camera service timeout detected.

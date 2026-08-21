@@ -1,0 +1,9 @@
+ECU: CAM
+Component: CameraService
+State: WAKEUP
+
+ERROR CAM_1032
+
+Camera service failed to initialize.
+CAN communication timeout.
+Retry count exceeded.
