@@ -14,5 +14,269 @@
     "content": "CAN gateway communication problems after ECU restart can be caused by incorrect startup ordering. Updated gateway software contains the corrected initialization sequence.",
     "component": "CAN Gateway",
     "software_version": "7.1.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-003",
+    "title": "Brake ECU Diagnostic Timeout Guide",
+    "content": "For brake ECU diagnostic timeouts, verify ECU load and diagnostic session timing. Increase the diagnostic timeout when the ECU is still processing startup requests.",
+    "component": "Brake Control",
+    "software_version": "5.1.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-004",
+    "title": "ADAS Camera Calibration Deployment Checklist",
+    "content": "ADAS camera calibration data must be included in the deployment artifact. Verify calibration package presence before running camera calibration tests.",
+    "component": "ADAS Camera",
+    "software_version": "9.0.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-005",
+    "title": "Lane Detection Stream Recovery",
+    "content": "If lane detection stops after a perception processor restart, verify that the perception service reconnects to the camera stream.",
+    "component": "Lane Detection",
+    "software_version": "9.0.4"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-006",
+    "title": "Lidar Cold Boot Initialization",
+    "content": "Lidar initialization can remain pending if readiness events are consumed before the service subscribes. Check startup event ordering.",
+    "component": "Lidar Service",
+    "software_version": "3.8.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-007",
+    "title": "Lidar Streaming and Buffer Tuning",
+    "content": "Long-duration lidar tests should monitor point-cloud buffer usage. Buffer exhaustion can interrupt the stream.",
+    "component": "Lidar Service",
+    "software_version": "3.8.3"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-008",
+    "title": "Radar Resume Handling",
+    "content": "After system resume, verify that the radar heartbeat timer is restarted and periodic messages are restored.",
+    "component": "Radar Service",
+    "software_version": "6.2.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-009",
+    "title": "Radar Object Cache Handling",
+    "content": "Radar object caches should be cleared when an empty sensor frame is received to prevent stale objects from being displayed.",
+    "component": "Radar Service",
+    "software_version": "6.2.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-010",
+    "title": "Infotainment Display Boot Dependencies",
+    "content": "The graphics driver must be ready before the display compositor starts. Incorrect startup ordering can result in a black display.",
+    "component": "Infotainment",
+    "software_version": "12.1.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-011",
+    "title": "Touchscreen Resume Troubleshooting",
+    "content": "If touch input is unavailable after resume, verify input-device registration and resume handling.",
+    "component": "Infotainment",
+    "software_version": "12.1.3"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-012",
+    "title": "GPS Startup Acquisition",
+    "content": "GPS receiver configuration should be applied after hardware readiness. Position acquisition may require retries after startup.",
+    "component": "GPS Service",
+    "software_version": "2.4.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-013",
+    "title": "GPS Time Synchronization",
+    "content": "Synchronize system time only after a valid GPS fix is available. Retry synchronization if the receiver has not acquired satellites.",
+    "component": "GPS Service",
+    "software_version": "2.4.4"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-014",
+    "title": "Battery Status Wakeup",
+    "content": "Battery status signals may remain stale after wakeup if subscriptions are not restored. Verify signal registration during network recovery.",
+    "component": "Battery Management",
+    "software_version": "8.0.5"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-015",
+    "title": "Battery State of Charge Polling",
+    "content": "Verify the battery status polling interval when state-of-charge updates are delayed after ignition.",
+    "component": "Battery Management",
+    "software_version": "8.0.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-016",
+    "title": "Thermal Fan State Machine",
+    "content": "Cooling fan commands should be accepted only in valid controller states. Incorrect transitions can cause commands to be ignored.",
+    "component": "Thermal Management",
+    "software_version": "5.7.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-017",
+    "title": "Temperature Sensor Polling",
+    "content": "Keep temperature sensor polling independent from long-running diagnostic operations to avoid stale sensor values.",
+    "component": "Thermal Management",
+    "software_version": "5.7.4"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-018",
+    "title": "Door Status Event Ordering",
+    "content": "Door status events should be published after the body controller confirms the requested state transition.",
+    "component": "Body Control",
+    "software_version": "4.9.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-019",
+    "title": "Door ECU Sleep Coordination",
+    "content": "Door ECUs should enter sleep only after network-manager synchronization has completed. Incorrect ordering may cause communication loss.",
+    "component": "Body Control",
+    "software_version": "4.9.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-020",
+    "title": "Lighting Command Prioritization",
+    "content": "Lighting commands can be delayed during vehicle state transitions. Check command queue priority when response latency increases.",
+    "component": "Lighting Control",
+    "software_version": "6.0.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-021",
+    "title": "High Beam State Validation",
+    "content": "Use event sequence validation for lighting state updates when duplicate or out-of-order messages are observed.",
+    "component": "Lighting Control",
+    "software_version": "6.0.3"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-022",
+    "title": "HVAC Wakeup Sequence",
+    "content": "HVAC communication channels should be initialized only after the vehicle network is ready following wakeup.",
+    "component": "HVAC",
+    "software_version": "3.2.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-023",
+    "title": "HVAC Temperature Persistence",
+    "content": "Persist cabin temperature targets in non-volatile configuration when the target must survive a power cycle.",
+    "component": "HVAC",
+    "software_version": "3.2.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-024",
+    "title": "Audio Service Startup Dependencies",
+    "content": "Audio service startup requires the audio hardware service to be available first. Verify service dependency ordering.",
+    "component": "Audio Service",
+    "software_version": "10.3.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-025",
+    "title": "Bluetooth Audio Reconnection",
+    "content": "After Bluetooth transport reconnect, recreate the audio session before resuming playback.",
+    "component": "Audio Service",
+    "software_version": "10.3.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-026",
+    "title": "Bluetooth Pairing at Startup",
+    "content": "Pairing requests received during Bluetooth stack startup should be queued until required profiles are ready.",
+    "component": "Bluetooth",
+    "software_version": "7.4.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-027",
+    "title": "Bluetooth Sleep Resume",
+    "content": "Reload the pairing database when the Bluetooth service resumes after vehicle sleep.",
+    "component": "Bluetooth",
+    "software_version": "7.4.3"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-028",
+    "title": "USB Enumeration During Boot",
+    "content": "USB storage devices connected during startup may require enumeration retries after the storage controller becomes ready.",
+    "component": "USB Service",
+    "software_version": "2.8.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-029",
+    "title": "USB Large Transfer Troubleshooting",
+    "content": "For intermittent large-file transfer failures, inspect transfer timeout and retry configuration.",
+    "component": "USB Service",
+    "software_version": "2.8.4"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-030",
+    "title": "Security Token Time Validation",
+    "content": "Secure-token validation should refresh trusted time after significant system clock adjustments.",
+    "component": "Security Service",
+    "software_version": "11.0.1"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-031",
+    "title": "Certificate Renewal Scheduling",
+    "content": "Certificate renewal scheduling should use UTC timestamps consistently to avoid missed renewal windows.",
+    "component": "Security Service",
+    "software_version": "11.0.3"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-032",
+    "title": "OTA Resumable Downloads",
+    "content": "OTA downloads should resume after temporary network changes rather than restarting from the beginning.",
+    "component": "OTA Update",
+    "software_version": "14.2.0"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-033",
+    "title": "OTA Package Integrity Validation",
+    "content": "Verify package checksum encoding and compare calculated checksums with the release manifest.",
+    "component": "OTA Update",
+    "software_version": "14.2.2"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-034",
+    "title": "ECU Startup Dependency Troubleshooting",
+    "content": "When multiple ECUs fail during startup, inspect dependency ordering and readiness events before investigating individual application errors.",
+    "component": "Vehicle Platform",
+    "software_version": "10.x"
+  },
+  {
+    "source": "CONFLUENCE",
+    "id": "CONF-035",
+    "title": "Network Wakeup Diagnostic Checklist",
+    "content": "For wakeup-related communication failures, check network manager state, ECU readiness, message timing and service initialization order.",
+    "component": "Vehicle Network",
+    "software_version": "8.x"
   }
 ]

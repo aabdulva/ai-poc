@@ -18,5 +18,335 @@
     "solution": "Upgrade gateway software to the corrected release.",
     "software_version": "7.x",
     "component": "CAN Gateway"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-003",
+    "title": "Brake status delayed during wakeup",
+    "description": "Brake status may arrive late immediately after network wakeup.",
+    "root_cause": "Low message scheduling priority during network recovery.",
+    "solution": "Apply corrected message priority configuration.",
+    "software_version": "5.x",
+    "component": "Brake Control"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-004",
+    "title": "Brake diagnostics timeout under load",
+    "description": "Brake diagnostic requests may time out when ECU startup load is high.",
+    "root_cause": "Diagnostic timeout too short for startup conditions.",
+    "solution": "Use the updated diagnostic timeout configuration.",
+    "software_version": "5.1.x",
+    "component": "Brake Control"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-005",
+    "title": "ADAS calibration package missing",
+    "description": "ADAS camera calibration may fail when calibration data is absent from the deployment package.",
+    "root_cause": "Incomplete deployment artifact.",
+    "solution": "Validate calibration package inclusion before deployment.",
+    "software_version": "9.x",
+    "component": "ADAS Camera"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-006",
+    "title": "Lane detection stream lost after restart",
+    "description": "Lane detection may stop after perception processor restart.",
+    "root_cause": "Camera stream reconnect not triggered.",
+    "solution": "Enable automatic perception stream reconnection.",
+    "software_version": "9.0.x",
+    "component": "Lane Detection"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-007",
+    "title": "Lidar initialization stuck",
+    "description": "Lidar may remain in an initialization state after cold boot.",
+    "root_cause": "Readiness event consumed before service subscription.",
+    "solution": "Correct startup event subscription ordering.",
+    "software_version": "3.x",
+    "component": "Lidar Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-008",
+    "title": "Lidar stream stops during endurance test",
+    "description": "Point-cloud streaming may stop during long-running tests.",
+    "root_cause": "Data buffer exhaustion.",
+    "solution": "Increase buffer capacity and enable backpressure handling.",
+    "software_version": "3.8.x",
+    "component": "Lidar Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-009",
+    "title": "Radar heartbeat missing after resume",
+    "description": "Radar heartbeat may be absent after system resume.",
+    "root_cause": "Heartbeat timer not restored after suspend.",
+    "solution": "Restart the heartbeat timer during resume.",
+    "software_version": "6.x",
+    "component": "Radar Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-010",
+    "title": "Radar stale objects",
+    "description": "Radar objects may remain visible after the sensor reports an empty scene.",
+    "root_cause": "Object cache not cleared.",
+    "solution": "Clear the object cache on empty sensor frames.",
+    "software_version": "6.2.x",
+    "component": "Radar Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-011",
+    "title": "Infotainment black screen",
+    "description": "Infotainment display may remain black after boot.",
+    "root_cause": "Graphics compositor starts before graphics driver readiness.",
+    "solution": "Correct graphics service startup dependency ordering.",
+    "software_version": "12.x",
+    "component": "Infotainment"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-012",
+    "title": "Touchscreen unavailable after resume",
+    "description": "Touch input may stop responding after low-power resume.",
+    "root_cause": "Input device registration not restored.",
+    "solution": "Re-register input devices during resume.",
+    "software_version": "12.1.x",
+    "component": "Infotainment"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-013",
+    "title": "GPS unavailable after startup",
+    "description": "GPS position may remain unavailable during early startup.",
+    "root_cause": "Receiver configured before hardware readiness.",
+    "solution": "Defer configuration until receiver readiness.",
+    "software_version": "2.x",
+    "component": "GPS Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-014",
+    "title": "GPS time sync failure",
+    "description": "GPS time synchronization may fail before satellite acquisition.",
+    "root_cause": "Synchronization attempted without valid GPS fix.",
+    "solution": "Retry synchronization after position acquisition.",
+    "software_version": "2.4.x",
+    "component": "GPS Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-015",
+    "title": "Battery SOC update delayed",
+    "description": "Battery state of charge may remain stale after ignition.",
+    "root_cause": "Incorrect polling interval.",
+    "solution": "Apply the corrected battery polling configuration.",
+    "software_version": "8.x",
+    "component": "Battery Management"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-016",
+    "title": "Battery voltage missing after wakeup",
+    "description": "Battery voltage signal may be unavailable after network wakeup.",
+    "root_cause": "Signal subscription not restored.",
+    "solution": "Restore signal subscriptions during wakeup.",
+    "software_version": "8.x",
+    "component": "Battery Management"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-017",
+    "title": "Cooling fan command ignored",
+    "description": "Cooling fan commands may be rejected during certain thermal states.",
+    "root_cause": "Invalid controller state transition.",
+    "solution": "Apply the corrected thermal controller state machine.",
+    "software_version": "5.7.x",
+    "component": "Thermal Management"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-018",
+    "title": "Temperature value frozen",
+    "description": "Temperature sensor values may stop updating during diagnostic activity.",
+    "root_cause": "Sensor polling blocked by diagnostic processing.",
+    "solution": "Separate sensor polling from diagnostic processing.",
+    "software_version": "5.7.x",
+    "component": "Thermal Management"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-019",
+    "title": "Door status stale after unlock",
+    "description": "Door status may remain locked briefly after successful unlock.",
+    "root_cause": "Status event published before controller state confirmation.",
+    "solution": "Publish status after state confirmation.",
+    "software_version": "4.9.x",
+    "component": "Body Control"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-020",
+    "title": "Door ECU disappears from network",
+    "description": "Door ECU may disappear after sleep/wakeup cycles.",
+    "root_cause": "Sleep entered before network synchronization.",
+    "solution": "Correct ECU and network-manager sleep coordination.",
+    "software_version": "4.9.x",
+    "component": "Body Control"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-021",
+    "title": "Lighting command latency",
+    "description": "Lighting commands may be delayed during vehicle state changes.",
+    "root_cause": "Command queue contention.",
+    "solution": "Prioritize lighting commands during state transitions.",
+    "software_version": "6.x",
+    "component": "Lighting Control"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-022",
+    "title": "High beam state mismatch",
+    "description": "High beam application state may differ from switch state.",
+    "root_cause": "Out-of-order duplicate state events.",
+    "solution": "Use sequence validation for lighting events.",
+    "software_version": "6.0.x",
+    "component": "Lighting Control"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-023",
+    "title": "HVAC unavailable after wakeup",
+    "description": "HVAC controller may not respond immediately after wakeup.",
+    "root_cause": "HVAC channel initialized before network readiness.",
+    "solution": "Delay channel initialization until network readiness.",
+    "software_version": "3.2.x",
+    "component": "HVAC"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-024",
+    "title": "HVAC temperature target lost",
+    "description": "Cabin temperature target may be lost after power cycle.",
+    "root_cause": "Target stored only in volatile memory.",
+    "solution": "Persist target in non-volatile configuration.",
+    "software_version": "3.2.x",
+    "component": "HVAC"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-025",
+    "title": "Audio service startup failure",
+    "description": "Audio service may fail to start during cold boot.",
+    "root_cause": "Missing audio hardware dependency.",
+    "solution": "Enforce audio hardware service dependency.",
+    "software_version": "10.x",
+    "component": "Audio Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-026",
+    "title": "Audio stops after Bluetooth reconnect",
+    "description": "Audio playback may stop after Bluetooth reconnect.",
+    "root_cause": "Audio session not recreated.",
+    "solution": "Recreate audio session after transport reconnect.",
+    "software_version": "10.3.x",
+    "component": "Audio Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-027",
+    "title": "Bluetooth pairing timeout",
+    "description": "Bluetooth pairing may time out immediately after startup.",
+    "root_cause": "Bluetooth profiles still loading.",
+    "solution": "Queue pairing requests until stack initialization completes.",
+    "software_version": "7.4.x",
+    "component": "Bluetooth"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-028",
+    "title": "Bluetooth device missing after sleep",
+    "description": "Previously paired Bluetooth devices may disappear after sleep.",
+    "root_cause": "Pairing database not reloaded.",
+    "solution": "Reload pairing database during resume.",
+    "software_version": "7.4.x",
+    "component": "Bluetooth"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-029",
+    "title": "USB device not detected at startup",
+    "description": "USB storage may not be detected when connected during startup.",
+    "root_cause": "USB enumeration before controller readiness.",
+    "solution": "Retry enumeration after controller readiness.",
+    "software_version": "2.8.x",
+    "component": "USB Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-030",
+    "title": "USB transfer timeout",
+    "description": "Large USB transfers may fail intermittently.",
+    "root_cause": "Transfer timeout too aggressive.",
+    "solution": "Increase transfer timeout and use retries.",
+    "software_version": "2.8.x",
+    "component": "USB Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-031",
+    "title": "Secure token rejected after clock change",
+    "description": "Security token validation may fail after a system clock adjustment.",
+    "root_cause": "Stale trusted time used for validation.",
+    "solution": "Refresh trusted time before validation.",
+    "software_version": "11.x",
+    "component": "Security Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-032",
+    "title": "Certificate renewal missed",
+    "description": "Certificate renewal may not trigger at the configured threshold.",
+    "root_cause": "Scheduler timezone inconsistency.",
+    "solution": "Use UTC consistently for renewal scheduling.",
+    "software_version": "11.x",
+    "component": "Security Service"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-033",
+    "title": "OTA download interrupted",
+    "description": "OTA download may stop during network transitions.",
+    "root_cause": "Download client does not resume correctly.",
+    "solution": "Enable resumable download handling.",
+    "software_version": "14.2.x",
+    "component": "OTA Update"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-034",
+    "title": "OTA package checksum mismatch",
+    "description": "OTA package validation may fail despite a successful download.",
+    "root_cause": "Incorrect checksum encoding.",
+    "solution": "Use the corrected checksum calculation.",
+    "software_version": "14.2.x",
+    "component": "OTA Update"
+  },
+  {
+    "source": "KNOWN_ISSUES",
+    "id": "KI-035",
+    "title": "Network wakeup message burst",
+    "description": "A burst of network messages may be observed immediately after wakeup.",
+    "root_cause": "Multiple services retry communication simultaneously.",
+    "solution": "Apply staggered startup/retry timing to reduce the burst.",
+    "software_version": "8.x",
+    "component": "Vehicle Network"
   }
 ]

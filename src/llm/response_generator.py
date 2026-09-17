@@ -298,6 +298,9 @@ RULE 9:
 Do not claim that two records are related merely
 because they contain similar words.
 
+RULE 10:
+If the Final Score is 0, then say that no similar historical records were found.
+
 ==================================================
 REQUIRED RESPONSE
 ==================================================

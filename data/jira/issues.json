@@ -28,5 +28,325 @@
     "solution": "Updated gateway software and corrected startup sequence.",
     "software_version": "7.1.2",
     "component": "CAN Gateway"
+  },
+  {
+    "source": "JIRA",
+    "id": "BRAKE-3001",
+    "title": "Brake signal delayed after network wakeup",
+    "description": "Brake status reaches the application several hundred milliseconds late after network wakeup.",
+    "root_cause": "Message scheduling priority was too low during network recovery.",
+    "solution": "Adjusted CAN message priority and startup scheduling.",
+    "software_version": "5.1.0",
+    "component": "Brake Control"
+  },
+  {
+    "source": "JIRA",
+    "id": "BRAKE-3002",
+    "title": "Brake ECU diagnostic response timeout",
+    "description": "Diagnostic requests to the brake ECU occasionally time out during automated testing.",
+    "root_cause": "Diagnostic session timeout was shorter than ECU response time under load.",
+    "solution": "Increased diagnostic timeout and optimized ECU startup processing.",
+    "software_version": "5.1.2",
+    "component": "Brake Control"
+  },
+  {
+    "source": "JIRA",
+    "id": "ADAS-4001",
+    "title": "Lane camera calibration data missing",
+    "description": "ADAS camera starts successfully but calibration data is unavailable after software update.",
+    "root_cause": "Calibration package was not included in the deployment artifact.",
+    "solution": "Added calibration package validation to the release pipeline.",
+    "software_version": "9.0.1",
+    "component": "ADAS Camera"
+  },
+  {
+    "source": "JIRA",
+    "id": "ADAS-4002",
+    "title": "Lane detection stops after processor restart",
+    "description": "Lane detection stops responding after the perception processor is restarted.",
+    "root_cause": "Perception service did not reconnect to the camera stream.",
+    "solution": "Added stream reconnect handling to the perception service.",
+    "software_version": "9.0.4",
+    "component": "Lane Detection"
+  },
+  {
+    "source": "JIRA",
+    "id": "LIDAR-5001",
+    "title": "Lidar sensor initialization failure",
+    "description": "Lidar sensor remains in initialization state after a cold boot.",
+    "root_cause": "Sensor readiness event was consumed before the service subscribed.",
+    "solution": "Changed event subscription ordering during startup.",
+    "software_version": "3.8.0",
+    "component": "Lidar Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "LIDAR-5002",
+    "title": "Lidar data stream interrupted",
+    "description": "Lidar point cloud stream stops intermittently during long-duration testing.",
+    "root_cause": "Buffer exhaustion in the sensor data pipeline.",
+    "solution": "Increased buffer capacity and added backpressure handling.",
+    "software_version": "3.8.3",
+    "component": "Lidar Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "RADAR-6001",
+    "title": "Radar heartbeat missing after resume",
+    "description": "Radar heartbeat messages are missing for several seconds after system resume.",
+    "root_cause": "Radar driver did not restore periodic timer after suspend.",
+    "solution": "Restarted heartbeat timer during resume handling.",
+    "software_version": "6.2.0",
+    "component": "Radar Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "RADAR-6002",
+    "title": "Radar object list contains stale entries",
+    "description": "Old radar objects remain visible after the sensor reports an empty scene.",
+    "root_cause": "Object cache was not cleared when the sensor frame was empty.",
+    "solution": "Clear object cache on empty sensor frames.",
+    "software_version": "6.2.2",
+    "component": "Radar Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "INFOTAIN-7001",
+    "title": "Infotainment display black after boot",
+    "description": "Display remains black although the infotainment process is running.",
+    "root_cause": "Display compositor started before graphics driver initialization completed.",
+    "solution": "Added dependency ordering between graphics driver and compositor.",
+    "software_version": "12.1.0",
+    "component": "Infotainment"
+  },
+  {
+    "source": "JIRA",
+    "id": "INFOTAIN-7002",
+    "title": "Touch input unavailable after resume",
+    "description": "Touchscreen becomes unresponsive after the vehicle resumes from low power mode.",
+    "root_cause": "Input device was not re-registered after resume.",
+    "solution": "Added input device re-registration during resume.",
+    "software_version": "12.1.3",
+    "component": "Infotainment"
+  },
+  {
+    "source": "JIRA",
+    "id": "GPS-8001",
+    "title": "GPS position unavailable at startup",
+    "description": "GPS service does not provide a valid position during the first minutes after startup.",
+    "root_cause": "Receiver configuration was applied before hardware was ready.",
+    "solution": "Deferred receiver configuration until hardware readiness.",
+    "software_version": "2.4.1",
+    "component": "GPS Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "GPS-8002",
+    "title": "GPS time synchronization intermittent",
+    "description": "System time is not synchronized consistently from GPS during repeated startup tests.",
+    "root_cause": "Time synchronization request was sent before a valid satellite fix.",
+    "solution": "Retry synchronization after valid position acquisition.",
+    "software_version": "2.4.4",
+    "component": "GPS Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "BAT-9001",
+    "title": "Battery state of charge update delayed",
+    "description": "Battery state of charge remains unchanged for several seconds after ignition.",
+    "root_cause": "Battery status polling interval was incorrectly configured.",
+    "solution": "Reduced polling interval and corrected configuration.",
+    "software_version": "8.0.2",
+    "component": "Battery Management"
+  },
+  {
+    "source": "JIRA",
+    "id": "BAT-9002",
+    "title": "Battery voltage reading unavailable",
+    "description": "Voltage signal is unavailable during automated wakeup tests.",
+    "root_cause": "Signal subscription was not restored after network sleep.",
+    "solution": "Restore signal subscriptions during network wakeup.",
+    "software_version": "8.0.5",
+    "component": "Battery Management"
+  },
+  {
+    "source": "JIRA",
+    "id": "THERM-10001",
+    "title": "Cooling fan command ignored",
+    "description": "Cooling fan does not respond to a valid command under high temperature conditions.",
+    "root_cause": "Fan controller rejected commands during an incorrect state transition.",
+    "solution": "Corrected fan controller state machine.",
+    "software_version": "5.7.1",
+    "component": "Thermal Management"
+  },
+  {
+    "source": "JIRA",
+    "id": "THERM-10002",
+    "title": "Temperature sensor value freezes",
+    "description": "Temperature value remains constant during dynamic temperature testing.",
+    "root_cause": "Sensor polling thread was blocked by diagnostic processing.",
+    "solution": "Separated sensor polling from diagnostic processing.",
+    "software_version": "5.7.4",
+    "component": "Thermal Management"
+  },
+  {
+    "source": "JIRA",
+    "id": "DOOR-11001",
+    "title": "Door status not updated after unlock",
+    "description": "Door control status remains locked although the vehicle reports a successful unlock.",
+    "root_cause": "Status event was published before the body controller completed the transition.",
+    "solution": "Publish door status after controller state confirmation.",
+    "software_version": "4.9.0",
+    "component": "Body Control"
+  },
+  {
+    "source": "JIRA",
+    "id": "DOOR-11002",
+    "title": "Door ECU communication lost",
+    "description": "Door controller intermittently disappears from the vehicle network.",
+    "root_cause": "ECU entered sleep mode before the network manager completed synchronization.",
+    "solution": "Corrected sleep coordination between ECU and network manager.",
+    "software_version": "4.9.2",
+    "component": "Body Control"
+  },
+  {
+    "source": "JIRA",
+    "id": "LIGHT-12001",
+    "title": "Exterior light command delayed",
+    "description": "Exterior light command is applied with a noticeable delay during automated tests.",
+    "root_cause": "Command queue contention during vehicle state transition.",
+    "solution": "Prioritized lighting commands during state transitions.",
+    "software_version": "6.0.1",
+    "component": "Lighting Control"
+  },
+  {
+    "source": "JIRA",
+    "id": "LIGHT-12002",
+    "title": "High beam status inconsistent",
+    "description": "High beam status occasionally differs between the switch state and application state.",
+    "root_cause": "Duplicate state updates arrived out of order.",
+    "solution": "Added sequence validation for lighting state events.",
+    "software_version": "6.0.3",
+    "component": "Lighting Control"
+  },
+  {
+    "source": "JIRA",
+    "id": "HVAC-13001",
+    "title": "HVAC controller unavailable after wakeup",
+    "description": "HVAC controller does not respond to commands immediately after wakeup.",
+    "root_cause": "Controller communication channel was initialized before the network became available.",
+    "solution": "Delayed HVAC channel initialization until network readiness.",
+    "software_version": "3.2.0",
+    "component": "HVAC"
+  },
+  {
+    "source": "JIRA",
+    "id": "HVAC-13002",
+    "title": "Cabin temperature target not retained",
+    "description": "Configured cabin temperature is lost after a power cycle.",
+    "root_cause": "Target temperature was stored only in volatile memory.",
+    "solution": "Persist target temperature in non-volatile configuration.",
+    "software_version": "3.2.2",
+    "component": "HVAC"
+  },
+  {
+    "source": "JIRA",
+    "id": "AUDIO-14001",
+    "title": "Audio service fails to start",
+    "description": "Audio service fails during cold boot and no media output is available.",
+    "root_cause": "Audio device initialization dependency was missing.",
+    "solution": "Added explicit dependency on the audio hardware service.",
+    "software_version": "10.3.0",
+    "component": "Audio Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "AUDIO-14002",
+    "title": "Audio stream stops after Bluetooth reconnect",
+    "description": "Audio playback stops after a Bluetooth device disconnects and reconnects.",
+    "root_cause": "Audio session was not recreated after transport reconnect.",
+    "solution": "Recreate audio session after Bluetooth reconnection.",
+    "software_version": "10.3.2",
+    "component": "Audio Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "BT-15001",
+    "title": "Bluetooth pairing timeout",
+    "description": "Bluetooth pairing frequently times out when initiated immediately after startup.",
+    "root_cause": "Bluetooth stack was still loading required profiles.",
+    "solution": "Queue pairing requests until Bluetooth stack initialization completes.",
+    "software_version": "7.4.1",
+    "component": "Bluetooth"
+  },
+  {
+    "source": "JIRA",
+    "id": "BT-15002",
+    "title": "Bluetooth device disappears after sleep",
+    "description": "Previously paired device is missing after vehicle sleep and wakeup.",
+    "root_cause": "Pairing database was not reloaded after sleep.",
+    "solution": "Reload pairing database during Bluetooth service resume.",
+    "software_version": "7.4.3",
+    "component": "Bluetooth"
+  },
+  {
+    "source": "JIRA",
+    "id": "USB-16001",
+    "title": "USB device not detected",
+    "description": "USB storage device is not detected when connected during startup.",
+    "root_cause": "USB enumeration started before the storage controller was ready.",
+    "solution": "Retry enumeration after controller readiness.",
+    "software_version": "2.8.1",
+    "component": "USB Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "USB-16002",
+    "title": "USB file transfer fails intermittently",
+    "description": "Large file transfers fail intermittently during endurance tests.",
+    "root_cause": "Transfer buffer timeout was too aggressive.",
+    "solution": "Increased transfer timeout and improved retry handling.",
+    "software_version": "2.8.4",
+    "component": "USB Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "SEC-17001",
+    "title": "Secure token validation failure",
+    "description": "Secure token validation fails after a system time adjustment.",
+    "root_cause": "Token validity calculation used stale system time.",
+    "solution": "Refresh trusted time before token validation.",
+    "software_version": "11.0.1",
+    "component": "Security Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "SEC-17002",
+    "title": "Certificate renewal job not triggered",
+    "description": "Certificate renewal does not start when the configured threshold is reached.",
+    "root_cause": "Scheduler used local time instead of UTC.",
+    "solution": "Normalize certificate scheduler timestamps to UTC.",
+    "software_version": "11.0.3",
+    "component": "Security Service"
+  },
+  {
+    "source": "JIRA",
+    "id": "OTA-18001",
+    "title": "OTA download pauses unexpectedly",
+    "description": "Software update download pauses during network transitions.",
+    "root_cause": "Download client did not resume correctly after connection changes.",
+    "solution": "Added resumable download handling.",
+    "software_version": "14.2.0",
+    "component": "OTA Update"
+  },
+  {
+    "source": "JIRA",
+    "id": "OTA-18002",
+    "title": "OTA package validation fails",
+    "description": "Downloaded update package fails integrity validation on selected vehicles.",
+    "root_cause": "Package checksum was calculated with an incorrect encoding.",
+    "solution": "Corrected checksum calculation and added validation tests.",
+    "software_version": "14.2.2",
+    "component": "OTA Update"
   }
 ]
